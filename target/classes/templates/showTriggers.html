@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Home</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <style>
+
+        #notifiers {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 75%;
+
+        }
+        
+        #notifiers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #notifiers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #notifiers tr:hover {background-color: #ddd;}
+        
+        #notifiers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #E00122;
+          color: white;
+        }
+
+        .button {
+        background-color: #E00122;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        }
+
+        #notifications {
+          font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 75%;
+
+        }
+        
+        #notifications td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #notifications tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #notifications tr:hover {background-color: #ddd;}
+        
+        #notifications th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #E00122;
+          color: white;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .button {
+        background-color: #E00122;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        margin-left: 165px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        }
+
+        </style>
+    
+    <body>
+
+        <h2 style= "font-family: Trebuchet MS; text-align:center;">Notifier Home Page</h2>
+
+        <table id="notifications" style="margin-left: auto;margin-right: auto;">
+            <tr>
+                <th>Notifications</th>
+            </tr>
+            <td>No Notifications</td>
+
+        </table>
+        <a href="showTriggers/update">Check for Updates</a>
+
+        <br><br>
+        <a href="addTriggers" class="button" style= "font-family: Trebuchet MS; text-align:center;">Add Notifier</a>
+        <br><br>
+        
+
+        <table id="notifiers" style="margin-left: auto;margin-right: auto;">
+            <tr>
+                <th>Name</th>
+                <th>Researcher</th>
+                <th>Bucket</th>
+                <th>College</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            
+
+            <tr th:each="trigger : ${triggers}">
+                <td th:text="${trigger.nname}">Notifier Name</td>
+                <td th:text="${trigger.researcher}">Researcher</td>
+                <td th:text="${trigger.bucket}">Bucket</td>
+                <td th:text="${trigger.college}">College</td>
+                <td><a href="#" th:href="@{/editTriggers/edit/} + ${trigger.id}">Edit</a></td>
+                <td><a href="#" th:href="@{/showTriggers/delete/} + ${trigger.id}">Delete</a></td>
+
+            </tr>
+        </table>
+
+    </body>
+</html>
